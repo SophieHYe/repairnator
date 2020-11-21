@@ -29,7 +29,12 @@ jobs:
         - TEST_PATH="src/repairnator-pipeline/"
         - TEST_LIST="!TestPipelineb*"
       install: ./.travis/travis-before.sh
-      script: travis_wait 50 ./.travis/travis-run-with-core.sh
+      script: 
+        - |
+          while sleep 9m; do
+            echo "====[ $SECONDS seconds still running ]===="
+          done &
+        - ./.travis/travis-run-with-core.sh
       if: branch = master
     - name: "repairnator-pipeline-b"
       env:
